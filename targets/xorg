@@ -1,5 +1,5 @@
 #!/bin/sh -e
-# Copyright (c) 2015 The crouton Authors. All rights reserved.
+# Copyright (c) 2016 The crouton Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 if [ "${TARGETNOINSTALL:-c}" = 'c' ]; then
@@ -190,7 +190,8 @@ if [ -z "$inteldriver" -a -n "$backport" ] && release -eq precise; then
         x11-xserver-utils xauth xinit xfonts-utils xkb-data xorg-docs-core \
         xterm x11-common xinput
 else
-    install xorg $installvideodrivers -- xserver-xorg-video-all$backport
+    install xorg $installvideodrivers -- xserver-xorg-video-all$backport \
+        xserver-xorg-input-vmmouse
 fi
 
 # Remove bad video drivers
@@ -209,7 +210,8 @@ else
 fi
 
 # Fix launching X11 from inside crosh (user doesn't own a TTY)
-sed -i 's/allowed_users=.*/allowed_users=anybody/' '/etc/X11/Xwrapper.config'
+sed -i 's/allowed_users=.*/allowed_users=anybody/' \
+    '/etc/X11/Xwrapper.config' || true
 
 inteldrv='/usr/lib/xorg/modules/drivers/intel_drv.so'
 if [ -n "$freon" -a -e "$inteldrv" ]; then

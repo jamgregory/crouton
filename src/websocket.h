@@ -1,4 +1,4 @@
-/* Copyright (c) 2015 The crouton Authors. All rights reserved.
+/* Copyright (c) 2016 The crouton Authors. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file.
  *
@@ -11,6 +11,9 @@
  *  - Fragmented packets from client
  *  - Ping packets
  */
+
+#ifndef WEBSOCKET_H_
+#define WEBSOCKET_H_
 
 #define _GNU_SOURCE /* for ppoll */
 #include <ctype.h>
@@ -932,3 +935,5 @@ static void socket_server_init(int port_) {
         exit(1);
     }
 }
+
+#endif /* WEBSOCKET_H_ */

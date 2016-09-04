@@ -19,5 +19,7 @@ raring*
 saucy*
 trusty
 utopic*
-vivid*|test
-wily*|test
+vivid*
+wily*
+xenial*|test
+yakkety*|test
